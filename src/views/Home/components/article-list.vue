@@ -6,6 +6,7 @@
             v-model="loading"
             :finished="finished"
             finished-text="没有更多了"
+            offset="450"
             error.sync="error"
             error-text="请求失败，点击重新加载"
             @load="onLoad"
@@ -38,7 +39,7 @@ export default {
         }
     },
     methods: {
-        //初始化滚动到底触发调用 onload
+        //初始化滚动距离底部offset的值才触发调用 onload
         async onLoad () {
             try {
                 // 1.请求获取数据

@@ -5,7 +5,7 @@
             <div v-if="article.cover.type === 3" class="cover-wrap">
                 <div class="cover-item" v-for="(img,ind) in article.cover.images" :key="ind">
                     <van-image
-                    class="cover-item-img"
+                        class="cover-item-img"
                         slot="default"
                         fit="cover"
                         :src="img"
