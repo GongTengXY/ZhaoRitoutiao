@@ -1,15 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Login from '@/views/Login'
-import Layout from '@/views/Layout'
-import Home from '@/views/Home'
-import Question from '@/views/Question'
-import Video from '@/views/Video'
-import My from '@/views/My'
-import Search from '@/views/Search'
-import Article from '@/views/article'
-import UserProfile from '@/views/User-profile'
-import Collent from '@/views/Collent'
+import store from '@/store'
 
 Vue.use(VueRouter)
 
@@ -17,7 +8,13 @@ Vue.use(VueRouter)
 const routes = [
   {
     path : "/login",
-    component : Login
+    component : () => import('@/views/Login'),
+    beforeEnter (to, from, next) {
+      if (store.state.user) { // vuex里有token(代表登录过, 但是一定要注意过期和主动退出要先清除vuex和本地的token, 让其跳转登录页)
+        return next('/')
+      }
+      next()
+    }
   },
   {
     path : '/',
@@ -25,31 +22,31 @@ const routes = [
   },
   {
     path : '/layout',
-    component : Layout,
+    component : () => import('@/views/Layout'),
     redirect: '/layout/home',
     children : [
       {
         path : "home",   //默认子路由
-        component : Home,
-        meta: {
-          keepAlive : true,
-        }
+        component : () => import('@/views/Home'),
+        // meta: {
+        //   keepAlive : true,
+        // }
       },
-      {
-        path : "question",
-        component : Question
-      },
-      {
-        path : "video",
-        component : Video
-      },
+      // {
+      //   path : "question",
+      //   component : () => import('@/views/Question')
+      // },
+      // {
+      //   path : "video",
+      //   component : () => import('@/views/Video')
+      // },
       {
         path : "my",
-        component : My,
+        component : () => import('@/views/My'),
       },
       {
         path : 'collent',
-        component : Collent,
+        component : () => import('@/views/Collent'),
         // meta: {
         //   requireAuth : true
         // }
@@ -57,16 +54,20 @@ const routes = [
     ]
   },
   {
+    path : '/chat',
+    component : () => import('@/views/Chat')
+  },
+  {
     path : '/userprofile',
-    component : UserProfile
+    component : () => import('@/views/User-profile')
   },
   {
     path : '/search',
-    component : Search
+    component : () => import('@/views/Search')
   },
   {
     path : '/article/:articleId',
-    component : Article,
+    component : () => import('@/views/article'),
     //开启props传参，就是把路由参数映射到组件上
     props : true,
   }

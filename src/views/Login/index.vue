@@ -38,6 +38,7 @@
 <script>
 import {login, sendCode} from '@/api/user'
 export default {
+  name : 'Login',
   data () {
     return {
       user : {
@@ -85,7 +86,8 @@ export default {
         const res = await login(user)
         const data = res.data.data
         this.$toast.success('登录成功')
-        this.$store.commit('setUser', data)
+        this.$store.commit('setUser', data.token)
+        localStorage.setItem('refresh_token', data.refresh_token)
         // console.log('登录成功', res)
         //登录成功，跳转回原来页面 使用back不严谨，后面再说
         this.$router.back()

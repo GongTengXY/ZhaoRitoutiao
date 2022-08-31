@@ -59,7 +59,7 @@
       <!-- 单元格 -->
       <van-cell-group >
         <van-cell class="cells" title="消息通知" is-link/>
-        <van-cell class="cells" title="小智同学" is-link/>
+        <van-cell class="cells" title="小思同学" to="/chat" is-link/>
       </van-cell-group>
       <van-cell v-if="user" class="cells quit_login" title="退出登录" @click="onQuitLogin" clickable/>
   </div>
@@ -69,6 +69,7 @@
 import { mapState } from 'vuex'
 import { getUserInfo } from '@/api/user.js'
 export default {
+  name : 'My',
   data () {
     return {
       userInfo : {}
@@ -92,6 +93,8 @@ export default {
           // 点击确认执行这里
           // 确认退出是需要退出状态，也就是清除“user中+本地存储”的token数据
           this.$store.commit('setUser', null)
+          this.$store.commit('setUserInfo', null)
+          localStorage.removeItem('refresh_token')
         })
         .catch(() => {
           // 点击取消执行这里
@@ -100,7 +103,9 @@ export default {
     async getOnlyUser() {
       try {
         const {data} = await getUserInfo()
+        console.log(data)
         this.userInfo = data.data
+        this.$store.commit('setUserInfo', data.data)
         // console.log(this.userInfo) 
       } catch(err) {
         console.log('获取失败', err)

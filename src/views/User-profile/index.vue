@@ -53,6 +53,7 @@ import EditBirthday from './components/editBirthday.vue'
 import PreviewPhoto from './components/previewPhoto.vue'
 
 export default {
+    name : 'UserProfile',
     data () {
         return {
             UserProfiles : {},   //用户的个人信息

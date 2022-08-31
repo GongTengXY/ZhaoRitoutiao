@@ -36,7 +36,6 @@
     @search="onSearch"
     >
     </searchHistory>
-
   </div>
 </template>
 
@@ -47,6 +46,7 @@ import searchSuggestion from './components/search-suggestion.vue'
 import { setItem, getItem } from '@/utils/storage'
 
 export default {
+  name : 'Search',
   data() {
     return {
       searchText : '',   //搜索文本

@@ -8,14 +8,14 @@
             <i slot="icon" replace class="iconfont icon-shouye"></i>
             首页
         </van-tabbar-item>
-        <van-tabbar-item to="/layout/question">
+        <!-- <van-tabbar-item to="/layout/question">
             <i slot="icon" replace class="iconfont icon-wenda"></i>
             问答
         </van-tabbar-item>
         <van-tabbar-item to="/layout/video">
             <i slot="icon" replace class="iconfont icon-shipin"></i>
             视频
-        </van-tabbar-item>
+        </van-tabbar-item> -->
         <van-tabbar-item to="/layout/my">
             <i slot="icon" replace class="iconfont icon-wode"></i>
             {{user ? '我的' : '未登录'}}

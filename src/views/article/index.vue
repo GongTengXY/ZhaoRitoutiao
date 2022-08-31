@@ -5,7 +5,7 @@
       class="page-nav-bar"
       left-arrow
       @click-left="onClickLeft"
-      title="黑马头条"
+      title="朝日头条"
     ></van-nav-bar>
     <!-- /导航栏 -->
 
@@ -148,6 +148,7 @@ import CommentPost from './components/comment-post.vue'
 import CommentReply from './components/comment-reply.vue'
 
 export default {
+    name : 'Detail',
     props: {
         articleId: {
           type: [Number, String],

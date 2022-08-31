@@ -37,6 +37,7 @@ import { mapState } from 'vuex'
 import { getItem } from '@/utils/storage.js'
 
 export default {
+    name : 'Home',
     data () {
         return {
             active : 0,
